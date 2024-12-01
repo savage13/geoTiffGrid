@@ -12,8 +12,7 @@
     <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-    <!-- <script src="https://unpkg.com/geotiff@latest/dist-browser/geotiff.js"></script> -->
-     <script src="../geotiff.js/dist-browser/geotiff.js"></script> 
+    <script src="https://unpkg.com/geotiff@latest/dist-browser/geotiff.js"></script>
 
     <title>TIFF Grid Example</title>
     <style>
@@ -45,10 +44,7 @@
     <div id="progress"></div>
   </body>
   <script type="module">
-    import { Colormap } from "./geoTiffGrid.js"
-
-    //import './tiffgrid.js'
-    //import { Colormap } from "./colormap.js"
+    import { Colormap } from "./dist/geoTiffGrid.js"
 
     /*
       https://apps.nationalmap.gov/tnmaccess/
@@ -70,10 +66,15 @@
     const date = "20231102"
     const urls = locs.map(v =>`${base}/${v}/USGS_${res}_${v}_${date}.tif`)
 
-    Colormap.from_cpt("cpt-city/wkp/template/wiki-2.0.cpt")
+    Colormap.from_cpt("wiki-2.0.cpt")
     .then(cpt => {
         cpt = cpt.rescale(-1000, 2300)
-        const opts = { colormap: cpt, scale_color: false, hill_auto: true, opacity: 0.65  }
+        const opts = {
+            colormap: cpt,
+            scale_color: false,
+            hill_auto: true,
+            opacity: 0.80
+        }
         for(const url of urls) {
             L.geoTiffGrid(url, opts).addTo(map)
         }

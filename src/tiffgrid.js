@@ -17,7 +17,7 @@ STATISTICS requires gdal version 3.8
 
 import { Colormap } from './colormap.js'
 export { Colormap } from "./colormap.js"
-//import rasterizer from './rasterizer.txt'
+import rasterizer from './rasterizer.txt'
 
 
 L.GeoTiffGrid = L.GridLayer.extend({
@@ -258,9 +258,9 @@ async function load_geotiff(url) {
     return {tiff, meta}
 }
 async function load_rasterizer(url) {
-    const res = await fetch(url)
-    const txt = await res.text()
-    //const txt = rasterizer
+    //const res = await fetch(url)
+    //const txt = await res.text()
+    const txt = rasterizer
     return URL.createObjectURL(new Blob([ txt ], { type: "text/javascript" }))
 }
 

@@ -1,4 +1,7 @@
 #!/bin/bash
 
-cp rasterizer.js rasterizer.txt
-npx esbuild --outfile=geoTiffGrid.js ./tiffgrid.js --bundle --format=esm
+cp src/rasterizer.js ./src/rasterizer.txt
+npx esbuild --outfile=dist/geoTiffGrid.js \
+    ./src/tiffgrid.js \
+    --bundle \
+    --format=esm
